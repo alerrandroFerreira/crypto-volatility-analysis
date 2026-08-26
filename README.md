@@ -1,7 +1,4 @@
-# Análisis de volatilidad de criptomonedas
-
-![Estacionalidad mensual por criptomoneda](outputs/figures/04_recomendacion_mensual_fig01.png)
-
+![Banner](outputs/banner.png)
 Análisis del riesgo histórico de 5 criptomonedas (BTC, DOGE, NEO, UNI, ZEN) usando precios diarios OHLC. El objetivo es comparar cuál ofrece mejor relación riesgo/retorno y en qué momento histórico habría sido más conveniente comprar previamente.
 
 ---
