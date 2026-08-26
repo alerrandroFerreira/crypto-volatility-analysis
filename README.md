@@ -1,5 +1,7 @@
 # Análisis de volatilidad de criptomonedas
 
+![Estacionalidad mensual por criptomoneda](outputs/figures/04_recomendacion_mensual_fig01.png)
+
 Análisis del riesgo histórico de 5 criptomonedas (BTC, DOGE, NEO, UNI, ZEN) usando precios diarios OHLC. El objetivo es comparar cuál ofrece mejor relación riesgo/retorno y en qué momento histórico habría sido más conveniente comprar previamente.
 
 ---
@@ -34,17 +36,18 @@ Python · pandas · numpy · matplotlib
 ## Estructura del proyecto
 
 ```
-analisis-volatilidad-cripto/
+crypto-volatility-analysis/
 ├── datos/
-│   ├── crudos/          <- CSVs originales, uno por criptomoneda (BTC, DOGE, NEO, UNI, ZEN)
-│   └── procesados/      <- datasets limpios y métricas calculadas listos para consumir
+│   ├── crudos/          <- CSVs originales, uno por criptomoneda (BTC, DOGE, NEO, UNI, ZEN) — no versionados, ver sección "Datos"
+│   └── procesados/      <- datasets limpios y métricas calculadas, versionados para reproducir sin los crudos
 ├── notebooks/
 │   ├── 01_limpieza_datos.ipynb               <- unifica los 5 CSVs en un solo dataset
 │   ├── 02_analisis_metricas.ipynb            <- calcula volatilidad, drawdown y ratio riesgo/retorno
 │   ├── 03_recomendaciones_estadisticas.ipynb <- ranking de criptos por eficiencia estadística
 │   └── 04_recomendacion_mensual.ipynb        <- identifica el mes óptimo de compra por cripto
 ├── outputs/
-│   └── figures/         <- gráficos exportados (precio histórico, drawdown, retorno acumulado)
+│   └── figures/         <- gráficos exportados por los notebooks vía plt.savefig() (precio histórico, drawdown, retorno acumulado, estacionalidad)
+├── LICENSE
 ├── README.md
 └── requirements.txt
 ```
@@ -137,6 +140,8 @@ Los notebooks están numerados y deben ejecutarse en orden: `01 → 02 → 03 �
 Los CSVs originales en `datos/crudos/` provienen de fuentes públicas de precios históricos. Cada archivo contiene columnas OHLC (apertura, máximo, mínimo, cierre) con frecuencia diaria.
 
 Los datos **no incluyen volumen de negociación** por lo que métricas de liquidez quedan fuera del alcance de este análisis.
+
+**Nota sobre reproducibilidad:** `datos/crudos/` está excluido del repositorio (ver `.gitignore`). No es necesario para reproducir el análisis: `datos/procesados/precios_diarios.csv` ya está versionado, así que los notebooks `02`, `03` y `04` corren directamente. Solo `01_limpieza_datos.ipynb` requiere los CSV originales en `datos/crudos/`.
 
 ---
 
